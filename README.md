@@ -1,5 +1,10 @@
 # ur5-moveit-example1
 
+## Recommended System
+Ubuntu 20.04
+Python 3
+ROS Noetic
+
 Code for Simulate UR5 robot in Gazebo. 
 ## First Time using ROS on your UBUNTU
 http://wiki.ros.org/noetic/Installation/Ubuntu
