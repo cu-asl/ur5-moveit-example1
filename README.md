@@ -10,47 +10,50 @@ Code for Simulate UR5 robot in Gazebo.
 ## First Time using ROS on your UBUNTU
 http://wiki.ros.org/noetic/Installation/Ubuntu
 
-Don't forget to source ROS main package
+Update Current Packages
 ```
-source /opt/ros/noetic/setup.bash
+sudo apt update && sudo apt upgrade
 ```
-or for long-term uses
+Install ROS (make sure to execute every commands)
 ```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl -y
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo apt update
+sudo apt install ros-noetic-desktop-full -y
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential -y
+sudo rosdep init
+rosdep update
 ```
 
-## requirements
+## Other Requirement
+### MoveIt
 ```
-sudo apt install ros-noetic-desktop-full ros-noetic-moveit ros-noetic-moveit-resources-prbt-moveit-config ros-noetic-joint-trajectory-controller
+sudo apt install ros-noetic-moveit
+```
+### Catkin Build
+```
+sudo apt-get install python3-catkin-tools
+```
+### Controller
+```
+sudo apt-get install ros-noetic-joint-trajectory-controller
 ```
 
 ## installation
-1. Download zip of this repo and https://github.com/cu-asl/universal-robot-archive
+1. Download zip of this repo
 2. Go to your ROS workspace or create new one by follow instruction below
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws
-catkin_make
-cd src
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin build
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 3. Extract files from github in workspace/src
-4. Use catkin_make or catkin build to create your package or
-```
-cd ~/catkin_ws
-catkin_make
-```
-5. Source your workspace by
-```
-source ~/catkin_ws/devel/setup.bash
-```
-or for long-term uses
-```
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
-
-## test
+4. Use `catkin build` again to create downloaded packages 
+## Test 1 basic simulation
 Run simulation in gazebo, you should see UR5 robot opened in Rviz and Gazebo
 
 `roslaunch ur5_data_collect_fw start_gazebo.launch`
@@ -147,4 +150,9 @@ states:
     depths: [9.661818781364628e-05]
 ---
 
+```
+
+## Test 2 Full Pick&Place Simulation
+```
+roslaunch ur5_data_collect_fw gripper3f.launch
 ```
