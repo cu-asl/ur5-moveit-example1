@@ -8,7 +8,6 @@ Code for Simulate UR5 robot in Gazebo.
 - ROS Noetic
 
 ## First Time using ROS on your UBUNTU
-http://wiki.ros.org/noetic/Installation/Ubuntu
 
 Update Current Packages
 ```
@@ -156,3 +155,12 @@ states:
 ```
 roslaunch ur5_data_collect_fw gripper3f.launch
 ```
+
+## Reference Sources
+http://wiki.ros.org/noetic/Installation/Ubuntu
+
+https://moveit.ros.org/install/
+
+https://github.com/JenniferBuehler/gazebo-pkgs/wiki/Installation
+
+https://github.com/shadow-robot/smart_grasping_sandbox
