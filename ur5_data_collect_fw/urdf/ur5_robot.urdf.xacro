@@ -37,6 +37,9 @@
             <geometry>
                 <box size="0.6 1.5 0.03"/>    
             </geometry>
+            <material name="blue">
+                <color rgba="0 0 0.8 1"/>
+            </material>
         </visual>
         <collision>
             <geometry>
@@ -47,7 +50,7 @@
     <gazebo reference="board">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
-        <material>Gazebo/Yellow</material>
+        <material>Gazebo/Grass</material>
     </gazebo>
     <link name="box_sq">
         <inertial>
@@ -59,8 +62,8 @@
                 <mesh filename="package://ur5_data_collect_fw/meshes/box_sq.stl" scale="0.001 0.001 0.001"/>
                 <!-- <mesh filename="package://ur5_data_collect_fw/meshes/box_cc.stl" scale="0.001 0.001 0.001"/> -->
             </geometry>
-            <material name="silver">
-                <color rgba="0.700 0.700 0.700 1.000"/>
+            <material name="green">
+                <color rgba="0 0.8 0 1.000"/>
             </material>
         </visual>
         <collision>
@@ -70,7 +73,7 @@
         </collision>
     </link>
     <gazebo reference="box_sq">
-        <material>Gazebo/Silver</material>
+        <material>Gazebo/DarkMagentaTransparent</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
     </gazebo>
@@ -127,6 +130,31 @@
         </collision>
     </link>
 
+    <gazebo reference="base_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="shoulder_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="upper_arm_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="forearm_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="wrist_1_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="wrist_3_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="wrist_2_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="ee_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
     <gazebo reference="ee_link2">
         <sensor name="ee_link2_contactsensor_sensor" type="contact">
             <always_on>true</always_on>
@@ -139,6 +167,17 @@
             </plugin>
         </sensor>
     </gazebo>
-        
+    <link name="camera_frame"/>
+    <joint name="camera_frame_joint" type="fixed">
+        <parent link="world"/>
+        <child link="camera_frame"/>
+        <origin xyz="2.0 1.0 0.805" rpy="0.0 0.3 -2.6122"/>
+    </joint>
+    <link name="camera_depth_optical_frame"/>
+    <joint name="camera_depth_optical_frame_joint" type="fixed">
+        <parent link="camera_frame"/>
+        <child link="camera_depth_optical_frame"/>
+        <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0 -1.5708"/>
+    </joint>
 
 </robot>
