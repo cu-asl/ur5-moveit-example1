@@ -9,6 +9,7 @@ import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
+from tf.transformations import quaternion_from_euler
 
 # initialize moveit_commander and a rospy node
 moveit_commander.roscpp_initialize(sys.argv)
@@ -37,6 +38,8 @@ print ("============ Available Planning Groups:", robot.get_group_names())
 print ("============ Printing robot state")
 print (robot.get_current_state())
 print ("=============")
+print (move_group.get_current_rpy())
+print ("=============")
 # print(robot.move_group.get_current_pose().pose)
 # print ("=============")
 
@@ -50,12 +53,18 @@ print ("=============")
 # move_group.go(joint_goal, wait = True)
 
 # move_group.stop()
-
 pose_goal = geometry_msgs.msg.Pose()
-pose_goal.orientation.w = float(input('orientation.w = '))
 pose_goal.position.x = float(input('position x = '))
 pose_goal.position.y = float(input('position y = '))
 pose_goal.position.z = float(input('position z = '))
+roll_angle = float(input('roll_angle = '))
+pitch_angle = float(input('pitch_angle = '))
+yaw_angle = float(input('yaw_angle = '))
+quaternion = quaternion_from_euler(roll_angle, pitch_angle, yaw_angle)
+pose_goal.orientation.x = quaternion[0]
+pose_goal.orientation.y = quaternion[1]
+pose_goal.orientation.z = quaternion[2]
+pose_goal.orientation.w = quaternion[3]
 
 move_group.set_pose_target(pose_goal)
 print('New goals for the robot:', pose_goal)

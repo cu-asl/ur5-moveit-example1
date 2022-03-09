@@ -48,7 +48,7 @@
 
     <model name='kinect'>
       <static>1</static>
-      <pose frame=''>1.7 1.2 0.805 0 0.523599 -2.6122</pose>
+      <pose frame=''>1.8 1.1 2 0 0.4 -2.6</pose>
       <link name='link'>
         <inertial>
           <mass>0.1</mass>
@@ -97,13 +97,13 @@
             </image>
             <clip>
               <near>0.05</near>
-              <far>3</far>
+              <far>5</far>
             </clip>
           </camera>
           <plugin filename="libgazebo_ros_openni_kinect.so" name="kinect_camera_controller">                                                                            
           <cameraName>camera</cameraName>                                                                                                                             
           <alwaysOn>true</alwaysOn>                                                                                                                                   
-          <updateRate>10</updateRate>                                                                                                                                 
+          <updateRate>0</updateRate>                                                                                                                                 
           <imageTopicName>rgb/image_raw</imageTopicName>                                                                                                              
           <depthImageTopicName>depth/image_raw</depthImageTopicName>                                                                                                  
           <pointCloudTopicName>depth/points</pointCloudTopicName>                                                                                                     
@@ -126,7 +126,7 @@
     </model>
     <model name='kinect_pilar'>
       <static>1</static>
-      <pose frame=''>1.7 1.2 0.5 0 -0 0</pose>
+      <pose frame=''>2 1 0.75 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -143,7 +143,7 @@
           <geometry>
             <cylinder>
               <radius>0.04</radius>
-              <length>0.5</length>
+              <length>1.5</length>
             </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -164,7 +164,7 @@
           <geometry>
             <cylinder>
               <radius>0.04</radius>
-              <length>0.5</length>
+              <length>1.5</length>
             </cylinder>
           </geometry>
           <material>
